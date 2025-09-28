@@ -24,39 +24,56 @@
 </head>
 <body>
     <h1>ShoppingList Application</h1>
-    
+
+    <!--input field to type new item-->
     <input type="text" id="itemInput"placeholder="enter the item">
+
+    <!--Button to add the item-->
     <button  id="addItemBtn">Add Item</button>
     
-
+     <!--unordered list to dispaly shopping list items-->
     <ul id="shoppingList"></ul>
 
     <script>
+
+        //get the DOM elements by id
         const input = document.getElementById('itemInput');
        const addButton = document.getElementById('addItemBtn');
        const list = document.getElementById('shoppingList');
 
+
+       //when Add button is clicked
        addButton.addEventListener('click',function(){
         const itemText=input.value.trim();
 
+        //condition if input is empty ,returns nothing
         if (itemText ==='') return;
 
+        //create new <li element>
         const li = document.createElement("li");
 
+        //create <span> to show item
         const span = document.createElement("span");
         span.textContent=itemText;
 
+        //create new edit button
         const editButton = document.createElement("Button");
         editButton.textContent="Edit";
 
+
+         //create new remove button
         const removeButton = document.createElement("Button");
         removeButton.textContent="Remove";
-        
+
+        //when remove button is clicked
         removeButton.addEventListener('click',function(){
             list.removeChild(li);
         });
 
+
+        //when edit button is clicked
         editButton.addEventListener("click",function(){
+            //change to save mode
             if(editButton.textContent==="Edit"){
                 const editInput=document.createElement('input');
                 editInput.type='text';
@@ -76,16 +93,17 @@
 
         });
 
-
+        //add elements to <li>
         li.appendChild(span);
         li.appendChild(editButton);
         li.appendChild(removeButton);
+
+        //add <li > to list
+        list.appendChild(li);
+
+        //clear input box
         input.value='';
 
-
-
-
-        list.appendChild(li);
 
        });
     
